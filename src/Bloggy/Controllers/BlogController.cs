@@ -2,7 +2,7 @@
 
 namespace Bloggy.Controllers
 {
-    public class HomeController : Controller
+    public class BlogController : Controller
     {
         [Route("/")]
         public IActionResult Index()
