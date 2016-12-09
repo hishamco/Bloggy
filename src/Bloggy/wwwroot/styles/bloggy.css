@@ -1,0 +1,80 @@
+body {
+    background-color: #F5F5F5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 670px;
+}
+
+header {
+    margin: 30px auto;
+    text-align: center;
+}
+
+    header h1 {
+        font-size: 60px;
+        font-weight: lighter;
+    }
+
+    header nav {
+        margin: auto;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+        header nav a {
+            color: #999;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+            header nav a.active, a:hover {
+                color: #111;
+                text-decoration: none;
+            }
+
+article {
+    margin-bottom: 30px;
+}
+
+    article a {
+        color: #111;
+        font-size: 28px;
+        font-weight: normal;
+        outline: none;
+    }
+
+        article a:hover {
+            color: #1BA0FF;
+            text-decoration: none;
+        }
+
+    article time {
+        color: #999;
+        display: block;
+    }
+
+    article p, time {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+footer {
+    text-align: center;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+    footer a {
+        color: #111;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        footer a:hover {
+            color: #1BA0FF;
+        }
