@@ -10,7 +10,7 @@
     @foreach (var post in Model)
     {
         <article class="row">
-            <h2><a href="#">@post.Title</a></h2>
+            <h2><a href="/@post.Slug">@post.Title</a></h2>
             <time>@post.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
             <p>@post.Excerpt</p>
         </article>

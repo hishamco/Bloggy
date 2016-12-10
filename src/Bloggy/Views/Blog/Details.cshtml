@@ -1,0 +1,14 @@
+﻿@using Bloggy.Models
+
+@model Post
+
+@{
+    ViewBag.Title = Model.Slug;
+}
+
+<article class="row">
+    <h2><a href="#">@Model.Title</a></h2>
+    <time>@Model.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
+    <span id="tags"><a href="#">#@Model.Tags</a></span>
+    @Html.Raw(Model.Content)
+</article>

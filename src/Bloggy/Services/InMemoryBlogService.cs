@@ -19,6 +19,11 @@ namespace Bloggy.Services
             }
         }
 
+        public Post GetPost(string slug)
+        {
+            return _db.Posts.SingleOrDefault(p => p.Slug == slug);
+        }
+
         public IEnumerable<Post> GetPosts()
         {
             return _db.Posts;

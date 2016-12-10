@@ -26,6 +26,14 @@ namespace Bloggy.Controllers
             return View(posts);
         }
 
+        [Route("/{slug}")]
+        public IActionResult Details(string slug)
+        {
+            var post = _blogService.GetPost(slug);
+
+            return View(post);
+        }
+
         private IEnumerable<Post> GetLatestPosts()
         {
             var postsNo = _blogOptions.Value.PostsPerPage;

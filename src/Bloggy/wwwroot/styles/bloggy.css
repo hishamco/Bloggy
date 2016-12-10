@@ -139,7 +139,15 @@ article {
 
     article time {
         color: #999;
-        display: block;
+    }
+
+    article span#tags > a {
+        color: #1BA0FF;
+        font-size: 16px;
+    }
+
+        article span#tags > a:hover {
+        text-decoration: underline;
     }
 
     article p, time {

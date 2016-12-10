@@ -5,6 +5,8 @@ namespace Bloggy.Services
 {
     public interface IBlogService
     {
+        Post GetPost(string slug);
+
         IEnumerable<Post> GetPosts();
     }
 }
