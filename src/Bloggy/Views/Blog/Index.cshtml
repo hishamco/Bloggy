@@ -1,46 +1,18 @@
-﻿@{
+﻿@using Bloggy.Models
+
+@model IEnumerable<Post>
+
+@{
     ViewBag.Title = "bloggy - Home";
 }
 
 <section>
-    <article class="row">
-        <h2><a href="#">What is Lorem Ipsum?</a></h2>
-        <time>December 2, 2016</time>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s
-        </p>
-    </article>
-    <article class="row">
-        <h2><a href="#">Where does it come from?</a></h2>
-        <time>December 2, 2016</time>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s
-        </p>
-    </article>
-    <article class="row">
-        <h2><a href="#">Why do we use it?</a></h2>
-        <time>December 2, 2016</time>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s
-        </p>
-    </article>
-    <article class="row">
-        <h2><a href="#">What is Lorem Ipsum?</a></h2>
-        <time>December 2, 2016</time>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s
-        </p>
-    </article>
-    <article class="row">
-        <h2><a href="#">Where does it come from?</a></h2>
-        <time>December 2, 2016</time>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s
-        </p>
-    </article>
+    @foreach (var post in Model)
+    {
+        <article class="row">
+            <h2><a href="#">@post.Title</a></h2>
+            <time>@post.PublishedAt.Value.ToString("MMMM d, yyyy")</time>
+            <p>@post.Excerpt</p>
+        </article>
+    }
 </section>
