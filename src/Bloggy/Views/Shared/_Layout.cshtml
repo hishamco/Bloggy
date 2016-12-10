@@ -9,9 +9,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@BlogOptions.Value.Name - @ViewBag.Title</title>
-    <link rel="stylesheet" href="~/styles/bootstrap.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" title="light">
+    <environment names="Development">
+        <link rel="stylesheet" href="~/styles/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" />
+    </environment>
+    <environment names="Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" 
+              asp-fallback-href="~/styles/bootstrap.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" />
+    </environment>
 </head>
 <body>
     <div class="container">
