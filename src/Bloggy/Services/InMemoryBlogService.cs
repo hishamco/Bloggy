@@ -6,10 +6,22 @@ namespace Bloggy.Services
 {
     public class InMemoryBlogService : IBlogService
     {
+        private readonly BloggingDbContext _db;
+
+        public InMemoryBlogService(BloggingDbContext db)
+        {
+            _db = db;
+            AddSeedData();
+        }
+
         public IEnumerable<Post> GetPosts()
         {
-            return new List<Post>
-            {
+            return _db.Posts;
+        }
+
+        private void AddSeedData()
+        {
+            _db.Posts.AddRange(
                 new Post
                 {
                     Id = 1,
@@ -58,7 +70,9 @@ namespace Bloggy.Services
                     LastModified = new DateTime(2016, 12, 10),
                     IsPublished = false
                 }
-            };
+            );
+
+            _db.SaveChanges();
         }
     }
 }
