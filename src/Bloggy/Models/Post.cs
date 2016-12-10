@@ -20,6 +20,6 @@ namespace Bloggy.Models
 
         public DateTime? PublishedAt { get; set; }
 
-        public string[] Tags { get; set; }
+        public string Tags { get; set; }
     }
 }
