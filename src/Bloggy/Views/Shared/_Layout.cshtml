@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Bloggy.Models
+@using Microsoft.Extensions.Options
+
+@inject IOptions<Blog> BlogOptions
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>bloggy - @ViewBag.Title</title>
+    <title>@BlogOptions.Value.Name - @ViewBag.Title</title>
     <link rel="stylesheet" href="~/styles/bootstrap.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" title="light">
@@ -11,8 +16,8 @@
 <body>
     <div class="container">
         <header>
-            <img src="Images/logo.png" class="img-circle" />
-            <h1>bloggy</h1>
+            <img src="@BlogOptions.Value.Image" class="img-circle" />
+            <h1>@BlogOptions.Value.Name</h1>
             <nav>
                 <a href="#" class="active">Home</a>
                 <a href="#">Archive</a>
@@ -24,7 +29,7 @@
             @RenderBody()
         </main>
         <footer>
-            <p>Copyright &copy; 2016 <a href="#">bloggy</a></p>
+            <p>Copyright &copy; 2016 <a href="#">@BlogOptions.Value.Name</a></p>
         </footer>
     </div>
 </body>
