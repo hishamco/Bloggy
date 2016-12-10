@@ -13,6 +13,6 @@ namespace Bloggy.Models
 
         public string Image { get; set; }
 
-        public int MaxPostsNoInHomePage { get; set; }
+        public int PostsPerPage { get; set; }
     }
 }

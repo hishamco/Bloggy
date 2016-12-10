@@ -28,7 +28,7 @@ namespace Bloggy.Controllers
 
         private IEnumerable<Post> GetLatestPosts()
         {
-            var postsNo = _blogOptions.Value.MaxPostsNoInHomePage;
+            var postsNo = _blogOptions.Value.PostsPerPage;
 
             return _blogService.GetPosts()
                 .Where(p => p.IsPublished)
