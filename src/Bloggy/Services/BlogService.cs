@@ -1,22 +1,28 @@
-﻿using System;
+﻿using Bloggy.Models;
+using System;
 using System.Collections.Generic;
-using Bloggy.Models;
 using System.Linq;
 
 namespace Bloggy.Services
 {
-    public class InMemoryBlogService : IBlogService
+    public class BlogService
     {
         private readonly BloggingDbContext _db;
+        private static BlogService _instance;
 
-        public InMemoryBlogService(BloggingDbContext db)
+        private BlogService(BloggingDbContext db)
         {
             _db = db;
 
-            if(_db.Posts.Count() == 0)
+            if (_db.Posts.Count() == 0)
             {
                 AddSeedData();
             }
+        }
+
+        public static BlogService CreateInstance(BloggingDbContext db)
+        {
+            return _instance ?? new BlogService(db);
         }
 
         public Post GetPost(string slug)
@@ -27,6 +33,12 @@ namespace Bloggy.Services
         public IEnumerable<Post> GetPosts()
         {
             return _db.Posts;
+        }
+
+        public void AddComment(Comment comment)
+        {
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
         }
 
         private void AddSeedData()
@@ -89,7 +101,19 @@ namespace Bloggy.Services
 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from ""de Finibus Bonorum et Malorum"" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>",
                     IsPublished = true,
                     PublishedAt = new DateTime(2016, 12, 10),
-                    Tags = "Lorem Ipsum,lorem,ipsum"
+                    Tags = "Lorem Ipsum,lorem,ipsum",
+                    Comments = new List<Comment>
+                    {
+                        new Comment()
+                        {
+                            Name = "Lorem Ipsum",
+                            Email = "lorem@ipsum.com",
+                            Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                            Website = "http://www.lipsum.com",
+                            PublishedAt = new DateTime(2016,12,14),
+                            PostId = 5
+                        }
+                    }
                 },
                 new Post
                 {
