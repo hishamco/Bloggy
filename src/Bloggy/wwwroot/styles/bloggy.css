@@ -1,85 +1,91 @@
 /* Thin */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 100;
-	src: url('../fonts/Roboto-Thin.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/Roboto-Thin.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 100;
-	src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 100;
+    src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype');
 }
 
 /* Light */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 300;
-	src: url('../fonts/Roboto-Light.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/Roboto-Light.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 300;
-	src: url('../fonts/Roboto-LightItalic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 300;
+    src: url('../fonts/Roboto-LightItalic.ttf') format('truetype');
 }
 
 /* Normal */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 400;
-	src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 400;
-	src: url('../fonts/Roboto-Italic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/Roboto-Italic.ttf') format('truetype');
 }
 
 /* Medium */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 500;
-	src: url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 500;
-	src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 500;
+    src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype');
 }
 
 /* Bold */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 700;
-	src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 700;
-	src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 700;
+    src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype');
 }
 
 /* Black */
 @font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 900;
-	src: url('../fonts/Roboto-Black.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/Roboto-Black.ttf') format('truetype');
 }
+
 @font-face {
-	font-family: "Roboto";
-	font-style: italic;
-	font-weight: 900;
-	src: url('../fonts/Roboto-BlackItalic.ttf') format('truetype');
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 900;
+    src: url('../fonts/Roboto-BlackItalic.ttf') format('truetype');
 }
 
 body {
@@ -147,13 +153,72 @@ article {
     }
 
         article span#tags > a:hover {
-        text-decoration: underline;
-    }
+            text-decoration: underline;
+        }
 
     article p, time {
         font-size: 16px;
         line-height: 24px;
     }
+
+#comments {
+    margin-left: -15px;
+}
+
+.comment {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .comment:nth-last-child(1) {
+        border-bottom: none;
+    }
+
+    .comment img {
+        float: left;
+        width: 100px;
+        padding-right: 15px;
+    }
+
+    .comment a {
+        color: #111;
+        font-size: 20px;
+        font-weight: normal;
+        outline: none;
+    }
+
+        .comment a:hover {
+            color: #1BA0FF;
+            text-decoration: none;
+        }
+
+    .comment time {
+        color: #999;
+        display: block;
+    }
+
+    .comment p, time {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+div.alert ul {
+    padding-left: 15px;
+}
+
+#commentForm {
+    margin-left: -15px;
+}
+
+#commentForm ul {
+    margin-left: -25px;
+}
+
+#commentForm button[type=submit] {
+    background-color:#1BA0FF;
+    color:#fff
+}
 
 footer {
     text-align: center;

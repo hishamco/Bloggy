@@ -12,3 +12,19 @@
     <span id="tags"><a href="#">#@Model.Tags</a></span>
     @Html.Raw(Model.Content)
 </article>
+
+<div id="comments">
+    <h3>@Model.Comments.Count() Comments</h3>
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="comment">
+            <img src="~/images/logo.png" />
+            <div>
+                <h4><a href="#">@comment.Name</a></h4>
+                <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
+                <p>@Html.Raw(comment.Content)</p>
+            </div>
+        </div>
+    }
+</div>
+<partial name="_CommentFormPartial" model="new Comment()" />

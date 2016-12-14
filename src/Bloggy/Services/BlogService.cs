@@ -1,4 +1,5 @@
 ﻿using Bloggy.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Bloggy.Services
 
         public Post GetPost(string slug)
         {
-            return _db.Posts.SingleOrDefault(p => p.Slug == slug);
+            return _db.Posts.Include(p => p.Comments).SingleOrDefault(p => p.Slug == slug);
         }
 
         public IEnumerable<Post> GetPosts()
@@ -109,6 +110,15 @@ namespace Bloggy.Services
                             Name = "Lorem Ipsum",
                             Email = "lorem@ipsum.com",
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                            Website = "http://www.lipsum.com",
+                            PublishedAt = new DateTime(2016,12,14),
+                            PostId = 5
+                        },
+                        new Comment()
+                        {
+                            Name = "Lorem Ipsum",
+                            Email = "lorem@ipsum.com",
+                            Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                             Website = "http://www.lipsum.com",
                             PublishedAt = new DateTime(2016,12,14),
                             PostId = 5
