@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bloggy.Models
 {
@@ -21,5 +22,7 @@ namespace Bloggy.Models
         public DateTime? PublishedAt { get; set; }
 
         public string Tags { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
     }
 }
