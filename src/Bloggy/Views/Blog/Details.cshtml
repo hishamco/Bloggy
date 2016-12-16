@@ -10,7 +10,7 @@
     <h2><a href="#">@Model.Title</a></h2>
     <time>@Model.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
     <span id="tags"><a href="#">#@Model.Tags</a></span>
-    @Html.Raw(Model.Content)
+    <markdown>@Model.Content</markdown>
 </article>
 
 <div id="comments">
@@ -22,7 +22,7 @@
             <div>
                 <h4><a href="#">@comment.Name</a></h4>
                 <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
-                <p>@Html.Raw(comment.Content)</p>
+                <p markdown>@Html.Raw(comment.Content)</p>
             </div>
         </div>
     }
