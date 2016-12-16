@@ -18,7 +18,7 @@
     @foreach (var comment in Model.Comments)
     {
         <div class="comment">
-            <img src="~/images/logo.png" />
+            <gravatar email="@comment.Email" />
             <div>
                 <h4><a href="#">@comment.Name</a></h4>
                 <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
@@ -27,4 +27,5 @@
         </div>
     }
 </div>
-<partial name="_CommentFormPartial" model="new Comment()" />
+
+<partial name="_CommentFormPartial" model="new Comment()" />
