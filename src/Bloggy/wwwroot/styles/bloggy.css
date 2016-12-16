@@ -181,6 +181,10 @@ article {
         padding-right: 15px;
     }
 
+    .comment div {
+        overflow: auto;
+    }
+
     .comment a {
         color: #111;
         font-size: 20px;
