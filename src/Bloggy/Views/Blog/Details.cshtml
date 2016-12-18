@@ -1,4 +1,5 @@
 ﻿@using Bloggy.Models
+@using Bloggy.Extensions
 
 @model Post
 
@@ -28,4 +29,11 @@
     }
 </div>
 
-<partial name="_CommentFormPartial" model="new Comment()" />
+@if (ViewContext.IsPost() && ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-success" role="alert"><strong>Well done!</strong> Your comment has been added</div>
+}
+else
+{
+    <partial name="_CommentFormPartial" model="new Comment()" />
+}
