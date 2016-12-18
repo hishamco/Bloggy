@@ -207,11 +207,7 @@ article {
         line-height: 24px;
     }
 
-div.alert ul {
-    padding-left: 15px;
-}
-
-#commentForm {
+#commentForm, .alert-success {
     margin-left: -15px;
 }
 
