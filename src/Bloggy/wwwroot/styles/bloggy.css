@@ -211,14 +211,36 @@ article {
     margin-left: -15px;
 }
 
-#commentForm ul {
-    margin-left: -25px;
+    #commentForm ul {
+        margin-left: -25px;
+    }
+
+    #commentForm button[type=submit] {
+        background-color: #1BA0FF;
+        color: #fff;
+    }
+
+#archive span.label, #tags span.label {
+    background-color: #999;
 }
 
-#commentForm button[type=submit] {
-    background-color:#1BA0FF;
-    color:#fff
+    #archive span.label:hover, #tags span.label:hover {
+        background-color: #1BA0FF;
+    }
+
+#archive h3, #tags h3 {
+    color: #1BA0FF;
 }
+
+#archive li > a, #tags li > a  {
+    font-size:16px;
+    color: #111;
+    text-decoration: underline;
+}
+
+    #archive li > a:hover ,#tags li > a:hover {
+        color: #1BA0FF;
+    }
 
 footer {
     text-align: center;

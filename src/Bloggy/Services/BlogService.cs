@@ -9,7 +9,7 @@ namespace Bloggy.Services
     public class BlogService
     {
         private readonly BloggingDbContext _db;
-        private static BlogService _instance;
+        private static BlogService _instance = null;
 
         private BlogService(BloggingDbContext db)
         {
@@ -40,6 +40,16 @@ namespace Bloggy.Services
         {
             _db.Comments.Add(comment);
             _db.SaveChanges();
+        }
+
+        public IEnumerable<string> GetTags()
+        {
+            var tags = _db.Posts
+                .SelectMany(p => p.Tags.Split(','))
+                .Distinct()
+                .OrderBy(t => t);
+
+            return tags;
         }
 
         private void AddSeedData()
@@ -75,7 +85,7 @@ namespace Bloggy.Services
                     Excerpt = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                     Content = @"**Lorem Ipsum** is simply dummy text of the printing and typesetting industry. **Lorem Ipsum** has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing **Lorem Ipsum** passages, and more recently with desktop publishing software like Aldus PageMaker including versions of **Lorem Ipsum**.",
                     IsPublished = true,
-                    PublishedAt = new DateTime(2016, 12, 6),
+                    PublishedAt = new DateTime(2016, 11, 6),
                     Tags = "Lorem Ipsum,lorem,ipsum"
                 },
                 new Post
@@ -86,7 +96,7 @@ namespace Bloggy.Services
                     Excerpt = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                     Content = @"**Lorem Ipsum** is simply dummy text of the printing and typesetting industry. **Lorem Ipsum** has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing **Lorem Ipsum** passages, and more recently with desktop publishing software like Aldus PageMaker including versions of **Lorem Ipsum**.",
                     IsPublished = true,
-                    PublishedAt = new DateTime(2016, 12, 8),
+                    PublishedAt = new DateTime(2015, 12, 8),
                     Tags = "Lorem Ipsum,lorem,ipsum"
                 },
                 new Post

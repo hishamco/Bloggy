@@ -51,6 +51,22 @@ namespace Bloggy.Controllers
             return View(post);
         }
 
+        [Route("/archive")]
+        public IActionResult Archive()
+        {
+            var posts = _blogService.GetPosts();
+
+            return View(posts);
+        }
+
+        [Route("/tags")]
+        public IActionResult Tags()
+        {
+            var tags = _blogService.GetTags();
+
+            return View(tags);
+        }
+
         private IEnumerable<Post> GetLatestPosts()
         {
             var postsNo = _blogOptions.Value.PostsPerPage;

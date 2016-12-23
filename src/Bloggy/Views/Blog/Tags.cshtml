@@ -1,0 +1,42 @@
+﻿@using Bloggy.Models
+@using Bloggy.Services
+
+@model IEnumerable<string>
+@inject BlogService BlogService
+
+@{
+    ViewBag.Title = "Tags";
+}
+
+@functions
+{
+    public IEnumerable<Post> GetPosts(string tag)
+    {
+        return BlogService.GetPosts()
+            .Where(p => p.Tags.Contains(tag))
+            .OrderBy(p => p.PublishedAt);
+    }
+}
+
+<div id="tags">
+    <div class="row">
+        @*@Html.Raw(String.Join(" . ", Model.Select(t => $"<a href=\"#{t}\">#{t}</a>")))*@
+        @foreach (var tag in Model)
+        {
+            <a href="#@tag"><span class="label">@tag</span></a>
+        }
+    </div>
+
+    @foreach (var tag in Model)
+    {
+        <div class="row">
+            <h3 id="@tag">@tag</h3>
+            <ul>
+                @foreach (var post in GetPosts(tag))
+                {
+                    <li><a href="/@post.Slug">@post.Title</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>
