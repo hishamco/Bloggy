@@ -13,9 +13,9 @@ namespace Bloggy
     {
         public Startup(IHostingEnvironment env)
         {
-            Envirnoment = env;
+            Environment = env;
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Envirnoment.ContentRootPath)
+                .SetBasePath(Environment.ContentRootPath)
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
@@ -23,11 +23,11 @@ namespace Bloggy
 
         public IConfigurationRoot Configuration { get; set; }
 
-        public IHostingEnvironment Envirnoment { get; set; }
+        public IHostingEnvironment Environment { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            if (Envirnoment.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 services.AddDbContext<BloggingDbContext>(options => options.UseInMemoryDatabase());
 
@@ -45,7 +45,7 @@ namespace Bloggy
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
-            if (Envirnoment.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
