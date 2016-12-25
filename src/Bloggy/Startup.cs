@@ -29,11 +29,11 @@ namespace Bloggy
         {
             if (Environment.IsDevelopment())
             {
-                services.AddDbContext<BloggingDbContext>(options => options.UseInMemoryDatabase());
+                services.AddDbContext<BloggingContext>(options => options.UseInMemoryDatabase());
 
                 var serviceProvider = services.BuildServiceProvider();
-                var dbContext = serviceProvider.GetService<BloggingDbContext>();
-                services.AddSingleton<BlogService>(f => BlogService.CreateInstance(dbContext));
+                var db = serviceProvider.GetService<BloggingContext>();
+                services.AddSingleton<BlogService>(f => BlogService.CreateInstance(db));
             }
 
             services.Configure<Blog>(options => Configuration.GetSection("AppSettings:Blog").Bind(options));

@@ -2,9 +2,9 @@
 
 namespace Bloggy.Models
 {
-    public class BloggingDbContext : DbContext
+    public class BloggingContext : DbContext
     {
-        public BloggingDbContext(DbContextOptions options)
+        public BloggingContext(DbContextOptions options)
             : base(options)
         {
 

@@ -8,10 +8,10 @@ namespace Bloggy.Services
 {
     public class BlogService
     {
-        private readonly BloggingDbContext _db;
+        private readonly BloggingContext _db;
         private static BlogService _instance = null;
 
-        private BlogService(BloggingDbContext db)
+        private BlogService(BloggingContext db)
         {
             _db = db;
 
@@ -21,7 +21,7 @@ namespace Bloggy.Services
             }
         }
 
-        public static BlogService CreateInstance(BloggingDbContext db)
+        public static BlogService CreateInstance(BloggingContext db)
         {
             return _instance ?? new BlogService(db);
         }
