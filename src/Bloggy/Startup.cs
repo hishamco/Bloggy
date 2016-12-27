@@ -32,6 +32,11 @@ namespace Bloggy
                 services.AddDbContext<BloggingContext>(options => options.UseInMemoryDatabase());
                 services.AddSingleton<IBlogService,InMemoryBlogService>();
             }
+            else
+            {
+                services.AddDbContext<BloggingContext>(options => options.UseSqlite("Filename=Blogging.db"));
+                services.AddSingleton<IBlogService, BlogService>();
+            }
 
             services.Configure<Blog>(options => Configuration.GetSection("AppSettings:Blog").Bind(options));
 
