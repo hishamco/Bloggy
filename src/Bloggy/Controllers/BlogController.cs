@@ -67,6 +67,12 @@ namespace Bloggy.Controllers
             return View(tags);
         }
 
+        [Route("/about")]
+        public IActionResult About() => View();
+
+        [Route("/contact")]
+        public IActionResult Contact() => View();
+
         private IEnumerable<Post> GetLatestPosts()
         {
             var postsNo = _blogOptions.Value.PostsPerPage;
