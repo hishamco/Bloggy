@@ -6,24 +6,18 @@ using System.Linq;
 
 namespace Bloggy.Services
 {
-    public class BlogService
+    public class InMemoryBlogService : IBlogService
     {
         private readonly BloggingContext _db;
-        private static BlogService _instance = null;
 
-        private BlogService(BloggingContext db)
+        public InMemoryBlogService(BloggingContext db)
         {
             _db = db;
 
             if (_db.Posts.Count() == 0)
             {
-                AddSeedData();
+                AddTestData();
             }
-        }
-
-        public static BlogService CreateInstance(BloggingContext db)
-        {
-            return _instance ?? new BlogService(db);
         }
 
         public Post GetPost(string slug)
@@ -52,7 +46,7 @@ namespace Bloggy.Services
             return tags;
         }
 
-        private void AddSeedData()
+        private void AddTestData()
         {
             _db.Posts.AddRange(
                 new Post

@@ -30,10 +30,7 @@ namespace Bloggy
             if (Environment.IsDevelopment())
             {
                 services.AddDbContext<BloggingContext>(options => options.UseInMemoryDatabase());
-
-                var serviceProvider = services.BuildServiceProvider();
-                var db = serviceProvider.GetService<BloggingContext>();
-                services.AddSingleton<BlogService>(f => BlogService.CreateInstance(db));
+                services.AddSingleton<IBlogService,InMemoryBlogService>();
             }
 
             services.Configure<Blog>(options => Configuration.GetSection("AppSettings:Blog").Bind(options));

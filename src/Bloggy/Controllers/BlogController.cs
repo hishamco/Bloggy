@@ -10,10 +10,10 @@ namespace Bloggy.Controllers
 {
     public class BlogController : Controller
     {
-        private BlogService _blogService;
+        private IBlogService _blogService;
         private IOptions<Blog> _blogOptions;
 
-        public BlogController(BlogService blogService, IOptions<Blog> blogOptions)
+        public BlogController(IBlogService blogService, IOptions<Blog> blogOptions)
         {
             _blogService = blogService;
             _blogOptions = blogOptions;
