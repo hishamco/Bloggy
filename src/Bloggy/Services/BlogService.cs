@@ -117,7 +117,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
                     {
                         new Comment()
                         {
-                            Name = "Lorem Ipsum",
+                            Author = "Lorem Ipsum",
                             Email = "lorem@ipsum.com",
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                             Website = "http://www.lipsum.com",
@@ -126,7 +126,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
                         },
                         new Comment()
                         {
-                            Name = "Lorem Ipsum",
+                            Author = "Lorem Ipsum",
                             Email = "lorem@ipsum.com",
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                             Website = "http://www.lipsum.com",

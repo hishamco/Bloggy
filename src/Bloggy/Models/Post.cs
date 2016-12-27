@@ -23,6 +23,6 @@ namespace Bloggy.Models
 
         public string Tags { get; set; }
 
-        public IEnumerable<Comment> Comments { get; set; }
+        public virtual IEnumerable<Comment> Comments { get; set; }
     }
 }

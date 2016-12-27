@@ -9,7 +9,8 @@ namespace Bloggy.Models
 
         [Required]
         [StringLength(100, MinimumLength = 2)]
-        public string Name { get; set; }
+        [Display(Name = "Name")]
+        public string Author { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]

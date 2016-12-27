@@ -21,7 +21,7 @@
         <div class="comment">
             <gravatar email="@comment.Email" />
             <div>
-                <h4><a href="#">@comment.Name</a></h4>
+                <h4><a href="@(comment.Website ?? "#")">@comment.Author</a></h4>
                 <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
                 <p markdown>@Html.Raw(comment.Content)</p>
             </div>
