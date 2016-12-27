@@ -35,10 +35,10 @@ I'm sure this is a great lesson for me to use almost the things that I know and 
   - Comment moderation
   - Live preview on commenting
 - Data Store
-  - Shipped with SQLite but you can easily switch to SQL Server or any EntityFramework Database Provider
+  - Shipped with InMemory (for Testing) & SQLite, but you can easily switch to SQL Server or any EntityFramework Database Provider
 - Web Feeds
   - RSS
   - ATOM
-- Markdown support as first class for both blog posts and comments
+- Markdown support as first class citizen
 - Mobile friendly
 - Works on Azure
