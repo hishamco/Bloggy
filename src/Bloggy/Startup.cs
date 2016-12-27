@@ -37,7 +37,7 @@ namespace Bloggy
             }
             else
             {
-                services.AddDbContext<BloggingContext>(options => options.UseSqlite("Filename=Blogging.db"));
+                services.AddDbContext<BloggingContext>(options => options.UseSqlite(Configuration["Data:DefaultConnection:ConnectionString"]));
             }
 
             services.AddSingleton<IBlogService, BlogService>();
