@@ -48,12 +48,12 @@ namespace Bloggy
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, BloggingContext db)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-
             if (Environment.IsDevelopment())
             {
                 Db = db;
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 AddTestData();
             }
 
