@@ -73,6 +73,9 @@ namespace Bloggy.Controllers
         [Route("/contact")]
         public IActionResult Contact() => View();
 
+        [Route("/error")]
+        public IActionResult Error() => View();
+
         private IEnumerable<Post> GetLatestPosts()
         {
             var postsNo = _blogOptions.Value.PostsPerPage;

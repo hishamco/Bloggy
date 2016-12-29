@@ -56,6 +56,10 @@ namespace Bloggy
                 app.UseDatabaseErrorPage();
                 AddTestData();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
             app.UseStaticFiles();
 
