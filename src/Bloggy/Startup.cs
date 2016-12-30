@@ -42,6 +42,7 @@ namespace Bloggy
 
             services.AddSingleton<IBlogService, BlogService>();
             services.Configure<Blog>(options => Configuration.GetSection("AppSettings:Blog").Bind(options));
+            services.Configure<Credential>(options => Configuration.GetSection("Credential").Bind(options));
 
             services.AddMvc();
         }
