@@ -1,0 +1,13 @@
+﻿@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>[ <strong>@User.Identity.Name</strong> | <a asp-controller="Account" asp-action="logout">Log Out</a> ]</p>
+}
+
+<environment names="Development,Staging">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Account" asp-action="login">Log In</a>
+    }
+</environment>
