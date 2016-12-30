@@ -44,6 +44,8 @@ namespace Bloggy
             services.Configure<Blog>(options => Configuration.GetSection("AppSettings:Blog").Bind(options));
             services.Configure<Credential>(options => Configuration.GetSection("Credential").Bind(options));
 
+            services.AddAuthentication();
+
             services.AddMvc();
         }
 
@@ -61,6 +63,12 @@ namespace Bloggy
             {
                 app.UseExceptionHandler("/error");
             }
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
 
             app.UseStaticFiles();
 
