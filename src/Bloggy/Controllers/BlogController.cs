@@ -45,6 +45,7 @@ namespace Bloggy.Controllers
             {
                 comment.PostId = post.Id;
                 comment.PublishedAt = DateTime.UtcNow;
+                comment.Content = comment.Content.Replace(Environment.NewLine, "<br/>");
                 _blogService.AddComment(comment);
             }
 
