@@ -47,6 +47,11 @@ namespace Bloggy.Controllers
                 comment.PublishedAt = DateTime.UtcNow;
                 comment.Content = comment.Content.Replace(Environment.NewLine, "<br/>");
                 _blogService.AddComment(comment);
+                TempData["Message"] = "Your comment has been added";
+            }
+            else
+            {
+                TempData["Message"] = "Unable to add comment";
             }
 
             return View(post);

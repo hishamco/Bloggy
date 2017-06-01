@@ -2,6 +2,7 @@
 using Bloggy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +48,8 @@ namespace Bloggy
             services.AddAuthentication();
 
             services.AddMvc();
+
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, BloggingContext db)
