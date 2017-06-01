@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C119D035-FEE1-4DBF-9046-2C1329F2DE0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C77F36F-50BA-402B-88C1-73A8341FF76C}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bloggy", "src\Bloggy\Bloggy.csproj", "{77A2C865-D54E-49BD-A25E-37DF2334C17E}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bloggy", "src\Bloggy\Bloggy.xproj", "{77A2C865-D54E-49BD-A25E-37DF2334C17E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
