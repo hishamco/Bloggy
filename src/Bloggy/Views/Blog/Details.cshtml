@@ -1,7 +1,10 @@
 ﻿@using Bloggy.Models
 @using Bloggy.Extensions
+@using Microsoft.Extensions.Options
 
 @model Post
+
+@inject IOptions<Blog> BlogOptions
 
 @{
     ViewBag.Title = Model.Slug;
@@ -14,26 +17,29 @@
     <markdown>@Model.Content</markdown>
 </article>
 
-<div id="comments">
-    <h3>@Model.Comments.Count() Comments</h3>
-    @foreach (var comment in Model.Comments)
-    {
-        <div class="comment">
-            <gravatar email="@comment.Email" />
-            <div>
-                <h4><a href="@(comment.Website ?? "#")">@comment.Author</a></h4>
-                <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
-                <p markdown>@Html.Raw(comment.Content)</p>
+@if (BlogOptions.Value.AllowComments)
+{
+    <div id="comments">
+        <h3>@Model.Comments.Count() Comments</h3>
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="comment">
+                <gravatar email="@comment.Email" />
+                <div>
+                    <h4><a href="@(comment.Website ?? "#")">@comment.Author</a></h4>
+                    <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
+                    <p markdown>@Html.Raw(comment.Content)</p>
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
 
-@if (ViewContext.IsPost() && ViewData.ModelState.IsValid)
-{
-    <alert type="Success">@TempData["Message"]</alert>
-}
-else
-{
-    <partial name="_CommentFormPartial" model="new Comment()" />
+    if (ViewContext.IsPost() && ViewData.ModelState.IsValid)
+    {
+        <alert type="Success">@TempData["Message"]</alert>
+    }
+    else
+    {
+        <partial name="_CommentFormPartial" model="new Comment()" />
+    }
 }

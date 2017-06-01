@@ -14,5 +14,7 @@ namespace Bloggy.Models
         public string Image { get; set; }
 
         public int PostsPerPage { get; set; }
+
+        public bool AllowComments { get; set; }
     }
 }
