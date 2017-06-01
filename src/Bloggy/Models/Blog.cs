@@ -16,5 +16,7 @@ namespace Bloggy.Models
         public int PostsPerPage { get; set; }
 
         public bool AllowComments { get; set; }
+
+        public int DaysToComment { get; set; }
     }
 }

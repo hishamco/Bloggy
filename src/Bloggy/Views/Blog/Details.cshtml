@@ -10,6 +10,18 @@
     ViewBag.Title = Model.Slug;
 }
 
+@functions
+{
+    public bool AllowComments
+    {
+        get
+        {
+            return BlogOptions.Value.AllowComments &&
+                (DateTime.Now - Model.PublishedAt.Value).Days <= BlogOptions.Value.DaysToComment;
+        }
+    }
+}
+
 <article class="row">
     <h2><a href="#">@Model.Title</a></h2>
     <time>@Model.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
@@ -17,7 +29,7 @@
     <markdown>@Model.Content</markdown>
 </article>
 
-@if (BlogOptions.Value.AllowComments)
+@if (AllowComments)
 {
     <div id="comments">
         <h3>@Model.Comments.Count() Comments</h3>
