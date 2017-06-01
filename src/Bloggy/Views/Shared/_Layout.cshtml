@@ -3,6 +3,10 @@
 
 @inject IOptions<Blog> BlogOptions
 
+@{ 
+    var activePage = ViewContext.RouteData.Values["action"].ToString();
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -30,10 +34,10 @@
             <img src="@BlogOptions.Value.Image" class="img-circle" />
             <h1>@BlogOptions.Value.Name</h1>
             <nav>
-                <a asp-controller="Blog" asp-action="index" class="active">Home</a>
-                <a asp-controller="Blog" asp-action="archive">Archive</a>
-                <a asp-controller="Blog" asp-action="about">About</a>
-                <a asp-controller="Blog" asp-action="contact">Contact</a>
+                <a asp-controller="Blog" asp-action="index" class="@(string.Equals(activePage, "index", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Home</a>
+                <a asp-controller="Blog" asp-action="archive" class="@(string.Equals(activePage, "archive", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Archive</a>
+                <a asp-controller="Blog" asp-action="about" class="@(string.Equals(activePage, "about", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">About</a>
+                <a asp-controller="Blog" asp-action="contact" class="@(string.Equals(activePage, "contact", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Contact</a>
             </nav>
             <div>
                 <partial name="_LoginPartial" />
