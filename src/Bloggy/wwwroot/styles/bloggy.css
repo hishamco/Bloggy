@@ -217,6 +217,11 @@ article {
         line-height: 24px;
     }
 
+    .comment div#actions > a {
+        font-size: 14px;
+        color: #1BA0FF;
+    }
+
 #commentForm, .alert-success {
     margin-left: -15px;
 }

@@ -40,6 +40,12 @@
                     <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
                     <p markdown>@Html.Raw(comment.Content)</p>
                 </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div id="actions">
+                        [ <a href="#">Edit</a> | <a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id">Delete</a> ]
+                    </div>
+                }
             </div>
         }
     </div>

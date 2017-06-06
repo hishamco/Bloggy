@@ -72,7 +72,7 @@ namespace Bloggy
 
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
 
         private void AddSeedData()
