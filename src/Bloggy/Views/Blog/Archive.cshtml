@@ -11,8 +11,7 @@
     public IEnumerable<dynamic> GetGroupedPostsByMonth()
     {
         return Model
-            .Where(p => p.PublishedAt.HasValue)
-            .GroupBy(p => p.PublishedAt.Value.ToString("MMMM yyyy"), (k, g) => new
+            .GroupBy(p => p.PublishedAt.ToString("MMMM yyyy"), (k, g) => new
         {
             Key = k,
             Posts = g.ToList()

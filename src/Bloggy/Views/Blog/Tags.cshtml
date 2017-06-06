@@ -1,8 +1,7 @@
 ﻿@using Bloggy.Models
-@using Bloggy.Services
 
 @model IEnumerable<string>
-@inject IBlogService BlogService
+@inject BloggingContext Db
 
 @{
     ViewBag.Title = "Tags";
@@ -12,7 +11,7 @@
 {
     public IEnumerable<Post> GetPosts(string tag)
     {
-        return BlogService.GetPosts()
+        return Db.Posts
             .Where(p => p.Tags.Contains(tag))
             .OrderBy(p => p.PublishedAt);
     }
