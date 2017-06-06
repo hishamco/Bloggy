@@ -10,12 +10,14 @@
 {
     public IEnumerable<dynamic> GetGroupedPostsByMonth()
     {
+        var notPublished = DateTime.MinValue.ToString("MMMM yyyy");
+
         return Model
             .GroupBy(p => p.PublishedAt.ToString("MMMM yyyy"), (k, g) => new
-        {
-            Key = k,
-            Posts = g.ToList()
-        });
+            {
+                Key = (k == notPublished ? "Not Published" : k),
+                Posts = g.ToList()
+            });
     }
 }
 
