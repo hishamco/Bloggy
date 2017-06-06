@@ -24,12 +24,12 @@
 
 <article class="row">
     <h2><a href="#">@Model.Title</a></h2>
-    <time>@Model.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
+    <time>@Model.PublishedAt.ToString("MMMM dd, yyyy")</time>
     <span id="tags"><a href="#">#@Model.Tags</a></span>
     <markdown>@Model.Content</markdown>
 </article>
 
-@if (Blog.AllowComments && (DateTime.Now - Model.PublishedAt.Value).Days <= Blog.DaysToComment)
+@if (Blog.AllowComments && (DateTime.Now - Model.PublishedAt).Days <= Blog.DaysToComment)
 {
     <div id="comments">
         <h3>@Model.Comments.Count() Comments</h3>

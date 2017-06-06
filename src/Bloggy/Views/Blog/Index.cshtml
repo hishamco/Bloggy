@@ -11,7 +11,7 @@
     {
         <article class="row">
             <h2><a href="/@post.Slug">@post.Title</a></h2>
-            <time>@post.PublishedAt.Value.ToString("MMMM dd, yyyy")</time>
+            <time>@post.PublishedAt.ToString("MMMM dd, yyyy")</time>
             <p>@post.Excerpt</p>
         </article>
     }

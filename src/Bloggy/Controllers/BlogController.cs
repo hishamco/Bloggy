@@ -88,7 +88,7 @@ namespace Bloggy.Controllers
 
             return _blogService.GetPosts()
                 .Where(p => p.IsPublished)
-                .OrderByDescending(p => p.PublishedAt.Value)
+                .OrderByDescending(p => p.PublishedAt)
                 .Take(postsNo);
         }
     }
