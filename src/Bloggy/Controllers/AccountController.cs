@@ -16,9 +16,9 @@ namespace Bloggy.Controllers
     {
         private Credential _credential;
 
-        public AccountController(IOptions<Credential> credential)
+        public AccountController(IOptions<AppSettings> appSettings)
         {
-            _credential = credential.Value;
+            _credential = appSettings.Value.Credential;
         }
 
         [HttpGet("login")]

@@ -11,12 +11,12 @@ namespace Bloggy.Controllers
     public class BlogController : Controller
     {
         private IBlogService _blogService;
-        private IOptions<Blog> _blogOptions;
+        private Blog _blog;
 
-        public BlogController(IBlogService blogService, IOptions<Blog> blogOptions)
+        public BlogController(IBlogService blogService, IOptions<AppSettings> appSettings)
         {
             _blogService = blogService;
-            _blogOptions = blogOptions;
+            _blog = appSettings.Value.Blog;
         }
 
         [Route("/")]
@@ -84,7 +84,7 @@ namespace Bloggy.Controllers
 
         private IEnumerable<Post> GetLatestPosts()
         {
-            var postsNo = _blogOptions.Value.PostsPerPage;
+            var postsNo = _blog.PostsPerPage;
 
             return _blogService.GetPosts()
                 .Where(p => p.IsPublished)

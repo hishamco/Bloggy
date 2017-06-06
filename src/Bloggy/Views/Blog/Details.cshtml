@@ -1,10 +1,11 @@
-﻿@using Bloggy.Models
+﻿@using Bloggy
+@using Bloggy.Models
 @using Bloggy.Extensions
 @using Microsoft.Extensions.Options
 
 @model Post
 
-@inject IOptions<Blog> BlogOptions
+@inject IOptions<AppSettings> AppSettings
 
 @{
     ViewBag.Title = Model.Slug;
@@ -12,12 +13,11 @@
 
 @functions
 {
-    public bool AllowComments
+    public Blog Blog
     {
         get
         {
-            return BlogOptions.Value.AllowComments &&
-                (DateTime.Now - Model.PublishedAt.Value).Days <= BlogOptions.Value.DaysToComment;
+            return AppSettings.Value.Blog;
         }
     }
 }
@@ -29,7 +29,7 @@
     <markdown>@Model.Content</markdown>
 </article>
 
-@if (AllowComments)
+@if (Blog.AllowComments && (DateTime.Now - Model.PublishedAt.Value).Days <= Blog.DaysToComment)
 {
     <div id="comments">
         <h3>@Model.Comments.Count() Comments</h3>

@@ -1,10 +1,22 @@
-﻿@using Bloggy.Models
+﻿@using Bloggy
+@using Bloggy.Models
 @using Microsoft.Extensions.Options
 
-@inject IOptions<Blog> BlogOptions
+@inject IOptions<AppSettings> AppSettings
 
 @{ 
     var activePage = ViewContext.RouteData.Values["action"].ToString();
+}
+
+@functions
+{
+    public Blog Blog
+    {
+        get
+        {
+            return AppSettings.Value.Blog;
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -12,7 +24,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@BlogOptions.Value.Name - @ViewBag.Title</title>
+    <title>@Blog.Name - @ViewBag.Title</title>
     <environment names="Development">
         <link rel="stylesheet" href="~/styles/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" />
@@ -31,8 +43,8 @@
 <body>
     <div class="container">
         <header>
-            <img src="@BlogOptions.Value.Image" class="img-circle" />
-            <h1>@BlogOptions.Value.Name</h1>
+            <img src="@Blog.Image" class="img-circle" />
+            <h1>@Blog.Name</h1>
             <nav>
                 <a asp-controller="Blog" asp-action="index" class="@(string.Equals(activePage, "index", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Home</a>
                 <a asp-controller="Blog" asp-action="archive" class="@(string.Equals(activePage, "archive", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Archive</a>
@@ -47,7 +59,7 @@
             @RenderBody()
         </main>
         <footer>
-            <p>Copyright &copy; @DateTime.UtcNow.Year <a href="#">@BlogOptions.Value.Name</a></p>
+            <p>Copyright &copy; @DateTime.UtcNow.Year <a href="#">@Blog.Name</a></p>
         </footer>
     </div>
     <script>
