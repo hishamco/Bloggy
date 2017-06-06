@@ -29,8 +29,6 @@
     <markdown>@Model.Content</markdown>
 </article>
 
-@if (Blog.AllowComments && (DateTime.Now - Model.PublishedAt).Days <= Blog.DaysToComment)
-{
     <div id="comments">
         <h3>@Model.Comments.Count() Comments</h3>
         @foreach (var comment in Model.Comments)
@@ -46,6 +44,8 @@
         }
     </div>
 
+@if (Blog.AllowComments && (DateTime.Now - Model.PublishedAt).Days <= Blog.DaysToComment)
+{
     if (ViewContext.IsPost() && ViewData.ModelState.IsValid)
     {
         <alert type="Success">@TempData["Message"]</alert>
