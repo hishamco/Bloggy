@@ -42,7 +42,7 @@
                 </div>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <div id="actions">
+                    <div class="actions">
                         [ <a href="#">Edit</a> | <a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id">Delete</a> ]
                     </div>
                 }

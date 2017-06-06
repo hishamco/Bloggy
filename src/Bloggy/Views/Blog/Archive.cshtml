@@ -27,7 +27,7 @@
             <ul>
                 @foreach (var post in group.Posts)
                 {
-                    <li><a href="/@post.Slug">@post.Title</a></li>
+                    <li><a href="/@post.Slug">@post.Title</a> <span class="actions" style="float:right">[ <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a> ]</span></li>
                 }
             </ul>
         </div>
