@@ -1,28 +1,31 @@
 ﻿using Bloggy.Models;
-using Bloggy.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Bloggy.Controllers
 {
     public class BlogController : Controller
     {
-        private IBlogService _blogService;
+        private BloggingContext _db;
         private Blog _blog;
 
-        public BlogController(IBlogService blogService, IOptions<AppSettings> appSettings)
+        public BlogController(BloggingContext db, IOptions<AppSettings> appSettings)
         {
-            _blogService = blogService;
+            _db = db;
             _blog = appSettings.Value.Blog;
         }
 
         [Route("/")]
         public IActionResult Index()
         {
-            var posts = GetLatestPosts();
+            var postsNo = _blog.PostsPerPage;
+            var posts = _db.Posts
+                .Where(p => p.IsPublished)
+                .OrderByDescending(p => p.PublishedAt)
+                .Take(postsNo);
 
             return View(posts);
         }
@@ -30,7 +33,8 @@ namespace Bloggy.Controllers
         [Route("/{slug}")]
         public IActionResult Details(string slug)
         {
-            var post = _blogService.GetPost(slug);
+            var post = _db.Posts.Include(p => p.Comments)
+                .SingleOrDefault(p => p.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
 
             return View(post);
         }
@@ -39,14 +43,15 @@ namespace Bloggy.Controllers
         [HttpPost]
         public IActionResult Details(string slug, Comment comment)
         {
-            var post = _blogService.GetPost(slug);
+            var post = _db.Posts
+                .Single(p => p.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
 
             if (ModelState.IsValid)
             {
                 comment.PostId = post.Id;
                 comment.PublishedAt = DateTime.UtcNow;
                 comment.Content = comment.Content.Replace(Environment.NewLine, "<br/>");
-                _blogService.AddComment(comment);
+                _db.Comments.Add(comment);
                 TempData["Message"] = "Your comment has been added";
             }
             else
@@ -60,7 +65,7 @@ namespace Bloggy.Controllers
         [Route("/archive")]
         public IActionResult Archive()
         {
-            var posts = _blogService.GetPosts();
+            var posts = _db.Posts;
 
             return View(posts);
         }
@@ -68,7 +73,10 @@ namespace Bloggy.Controllers
         [Route("/tags")]
         public IActionResult Tags()
         {
-            var tags = _blogService.GetTags();
+            var tags = _db.Posts
+                .SelectMany(p => p.Tags.Split(','))
+                .Distinct()
+                .OrderBy(t => t);
 
             return View(tags);
         }
@@ -81,15 +89,5 @@ namespace Bloggy.Controllers
 
         [Route("/error")]
         public IActionResult Error() => View();
-
-        private IEnumerable<Post> GetLatestPosts()
-        {
-            var postsNo = _blog.PostsPerPage;
-
-            return _blogService.GetPosts()
-                .Where(p => p.IsPublished)
-                .OrderByDescending(p => p.PublishedAt)
-                .Take(postsNo);
-        }
     }
 }

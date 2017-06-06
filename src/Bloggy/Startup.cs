@@ -1,5 +1,4 @@
 ﻿using Bloggy.Models;
-using Bloggy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -41,7 +40,6 @@ namespace Bloggy
                 services.AddDbContext<BloggingContext>(options => options.UseSqlite(Configuration["Data:DefaultConnection:ConnectionString"]));
             }
 
-            services.AddSingleton<IBlogService, BlogService>();
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
 
             services.AddAuthentication();
