@@ -43,7 +43,7 @@
 <body>
     <div class="container">
         <header>
-            <img src="@Blog.Image" class="img-circle" />
+            <img src="@Url.Content($"~/{Blog.Image}")" class="img-circle" />
             <h1>@Blog.Name</h1>
             <nav>
                 <a asp-controller="Blog" asp-action="index" class="@(string.Equals(activePage, "index", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Home</a>
