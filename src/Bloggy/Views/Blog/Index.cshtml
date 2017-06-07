@@ -13,6 +13,10 @@
             <h2><a href="/@post.Slug">@post.Title</a></h2>
             <time>@post.PublishedAt.ToString("MMMM dd, yyyy")</time>
             <p>@post.Excerpt</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span class="actions">[ <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a> ]</span>
+            }
         </article>
     }
 </section>
