@@ -1,0 +1,37 @@
+﻿@using Bloggy.Models
+
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+@functions
+{
+    public IEnumerable<dynamic> GetGroupedPostsByMonth()
+    {
+        var notPublished = DateTime.MinValue.ToString("MMMM yyyy");
+
+        return Model
+            .GroupBy(p => p.PublishedAt.ToString("MMMM yyyy"), (k, g) => new
+            {
+                Key = (k == notPublished ? "Not Published" : k),
+                Posts = g.ToList()
+            });
+    }
+}
+
+<div id="archive">
+    @foreach (var group in GetGroupedPostsByMonth())
+    {
+        <div class="row">
+            <h3>@group.Key</h3>
+            <ul>
+                @foreach (var post in group.Posts)
+                {
+                    <li><a href="/@post.Slug">@post.Title</a> @if (User.Identity.IsAuthenticated){<span class="actions" style="float:right">[ <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a> ]</span>}</li>
+                }
+            </ul>
+        </div>
+     }
+</div>

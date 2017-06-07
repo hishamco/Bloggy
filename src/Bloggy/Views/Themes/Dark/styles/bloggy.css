@@ -1,4 +1,4 @@
-/* Thin */
+﻿/* Thin */
 @font-face {
     font-family: "Roboto";
     font-style: normal;
@@ -89,13 +89,14 @@
 }
 
 body {
-    background-color: #F5F5F5;
+    background-color: #1f1f1f;
     font-family: 'Roboto', sans-serif;
 }
 
 .container {
     width: 670px;
 }
+
 
 header {
     margin: 30px auto;
@@ -105,6 +106,7 @@ header {
     header h1 {
         font-size: 60px;
         font-weight: lighter;
+        color:#fff;
     }
 
     header nav {
@@ -115,7 +117,7 @@ header {
     }
 
         header nav a {
-            color: #999;
+            color: #fff;
             text-transform: uppercase;
             text-decoration: none;
             font-size: 18px;
@@ -123,7 +125,7 @@ header {
         }
 
             header nav a.active, a:hover {
-                color: #111;
+                color: #1ba0ff;
                 text-decoration: none;
             }
 
@@ -133,7 +135,7 @@ header {
     }
 
         header a:hover {
-            color: #111;
+            color: #1ba0ff;
             text-decoration: none;
         }
 
@@ -142,7 +144,7 @@ article {
 }
 
     article a {
-        color: #111;
+        color: #1ba0ff;
         font-size: 28px;
         font-weight: normal;
         outline: none;
@@ -150,7 +152,7 @@ article {
 
         article a:hover {
             color: #1BA0FF;
-            text-decoration: none;
+            text-decoration: underline;
         }
 
     article time {
@@ -167,12 +169,17 @@ article {
         }
 
     article p, time {
+        color: #fff;
         font-size: 16px;
         line-height: 24px;
     }
 
 #comments {
     margin-left: -15px;
+}
+
+#comments h3 {
+    color: #999;
 }
 
 .comment {
@@ -196,7 +203,7 @@ article {
     }
 
     .comment a {
-        color: #111;
+        color: #1BA0FF;
         font-size: 20px;
         font-weight: normal;
         outline: none;
@@ -204,7 +211,7 @@ article {
 
         .comment a:hover {
             color: #1BA0FF;
-            text-decoration: none;
+            text-decoration: underline;
         }
 
     .comment time {
@@ -213,6 +220,7 @@ article {
     }
 
     .comment p, time {
+        color: #fff;
         font-size: 16px;
         line-height: 24px;
     }
@@ -231,26 +239,34 @@ article {
     }
 
 #archive span.label, #tags span.label {
-    background-color: #999;
+    background-color: #1BA0FF;
 }
 
     #archive span.label:hover, #tags span.label:hover {
-        background-color: #1BA0FF;
+        background-color: #999;
     }
 
 #archive h3, #tags h3 {
-    color: #1BA0FF;
+    color: #999;
 }
 
 #archive li > a, #tags li > a {
     font-size: 16px;
-    color: #111;
+    color: #1BA0FF;
     text-decoration: underline;
 }
 
     #archive li > a:hover, #tags li > a:hover {
-        color: #1BA0FF;
+        color: #fff;
     }
+
+#contact h2, #about h2, #login h2 {
+    color: #999;
+}
+
+#contact p, #about p {
+    color: #fff;
+}
 
 #contact a {
     color: #1BA0FF;
@@ -262,6 +278,10 @@ article {
         color: #111;
     }
 
+#login label {
+    color: #fff;
+}
+
 #login button[type=submit] {
     background-color: #1BA0FF;
     color: #fff;
@@ -271,14 +291,20 @@ article {
     margin-left: -15px;
 }
 
-#new-post a {
-    color: #1BA0FF;
+.actions {
+    color : #fff;
 }
 
-.actions > a {
-    font-size: 14px;
-    color: #1BA0FF;
-}
+    .actions > a {
+        font-size: 14px;
+        color: #1BA0FF;
+    }
+
+    .actions > a:hover {
+        font-size: 14px;
+        color: #1BA0FF;
+        text-decoration: underline;
+    }
 
 footer {
     text-align: center;
@@ -287,11 +313,11 @@ footer {
 }
 
     footer a {
-        color: #111;
+        color: #1BA0FF;
         text-decoration: none;
         font-size: 14px;
     }
 
         footer a:hover {
-            color: #1BA0FF;
+            color: #111;
         }

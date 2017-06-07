@@ -1,13 +1,17 @@
 ﻿using Bloggy.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Bloggy
 {
@@ -46,6 +50,11 @@ namespace Bloggy
 
             services.AddMvc();
 
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.ViewLocationExpanders.Add(new ThemeViewLocationExpander());
+            });
+
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
         }
 
@@ -71,6 +80,15 @@ namespace Bloggy
             });
 
             app.UseStaticFiles();
+
+            var appSettings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),
+                    $@"Views/Themes/{appSettings.Value.Blog.Theme}")),
+                RequestPath = string.Empty
+            });
 
             app.UseMvcWithDefaultRoute();
         }

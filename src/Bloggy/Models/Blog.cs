@@ -13,5 +13,7 @@
         public bool AllowComments { get; set; }
 
         public int DaysToComment { get; set; }
+
+        public string Theme { get; set; }
     }
 }

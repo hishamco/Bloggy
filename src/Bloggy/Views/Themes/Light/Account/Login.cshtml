@@ -1,0 +1,27 @@
+﻿@using Bloggy.Models
+
+@model User
+
+@{
+    ViewBag.Title = "Log In";
+}
+
+<div id="login" class="row">
+    <h2>@ViewBag.Title</h2>
+    <div class="col-md-12">
+        <section>
+            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" asp-anti-forgery="true" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn">Ok</button>
+            </form>
+        </section>
+    </div>
+</div>
