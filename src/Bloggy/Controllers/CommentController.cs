@@ -5,24 +5,23 @@ using System.Linq;
 
 namespace Bloggy.Controllers
 {
-    public class CommentController : Controller
+    public class CommentController : BaseController
     {
-        private BloggingContext _db;
-
         public CommentController(BloggingContext db)
+            :base(db)
         {
-            _db = db;
+
         }
 
         public IActionResult Delete(int id)
         {
-            var comment = _db.Comments.Include(c => c.Post)
+            var comment = Db.Comments.Include(c => c.Post)
                 .SingleOrDefault(c => c.Id == id);
 
             if (comment != null)
             {
-                _db.Comments.Remove(comment);
-                _db.SaveChanges();
+                Db.Comments.Remove(comment);
+                Db.SaveChanges();
             }
 
             return RedirectToAction("Details", "Blog", new { slug = comment.Post.Slug});

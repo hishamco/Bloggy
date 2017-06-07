@@ -7,14 +7,13 @@ using System.Linq;
 
 namespace Bloggy.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : BaseController
     {
-        private BloggingContext _db;
         private Blog _blog;
 
         public BlogController(BloggingContext db, IOptions<AppSettings> appSettings)
+            :base(db)
         {
-            _db = db;
             _blog = appSettings.Value.Blog;
         }
 
@@ -22,7 +21,7 @@ namespace Bloggy.Controllers
         public IActionResult Index()
         {
             var postsNo = _blog.PostsPerPage;
-            var posts = _db.Posts
+            var posts = Db.Posts
                 .Where(p => p.IsPublished)
                 .OrderByDescending(p => p.PublishedAt)
                 .Take(postsNo);
@@ -33,7 +32,7 @@ namespace Bloggy.Controllers
         [Route("/{slug}")]
         public IActionResult Details(string slug)
         {
-            var post = _db.Posts.Include(p => p.Comments)
+            var post = Db.Posts.Include(p => p.Comments)
                 .SingleOrDefault(p => p.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
 
             return View(post);
@@ -43,7 +42,7 @@ namespace Bloggy.Controllers
         [HttpPost]
         public IActionResult Details(string slug, Comment comment)
         {
-            var post = _db.Posts
+            var post = Db.Posts
                 .Single(p => p.Slug.Equals(slug, StringComparison.OrdinalIgnoreCase));
 
             if (ModelState.IsValid)
@@ -51,7 +50,7 @@ namespace Bloggy.Controllers
                 comment.PostId = post.Id;
                 comment.PublishedAt = DateTime.UtcNow;
                 comment.Content = comment.Content.Replace(Environment.NewLine, "<br/>");
-                _db.Comments.Add(comment);
+                Db.Comments.Add(comment);
                 TempData["Message"] = "Your comment has been added";
             }
             else
@@ -65,7 +64,7 @@ namespace Bloggy.Controllers
         [Route("/archive")]
         public IActionResult Archive()
         {
-            var posts = _db.Posts;
+            var posts = Db.Posts;
 
             return View(posts);
         }
@@ -73,7 +72,7 @@ namespace Bloggy.Controllers
         [Route("/tags")]
         public IActionResult Tags()
         {
-            var tags = _db.Posts
+            var tags = Db.Posts
                 .SelectMany(p => p.Tags.Split(','))
                 .Distinct()
                 .OrderBy(t => t);

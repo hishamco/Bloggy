@@ -6,13 +6,12 @@ using System.Linq;
 
 namespace Bloggy.Controllers
 {
-    public class PostController : Controller
+    public class PostController : BaseController
     {
-        private BloggingContext _db;
-
         public PostController(BloggingContext db)
+            :base(db)
         {
-            _db = db;
+
         }
 
         public IActionResult Create() => View();
@@ -30,15 +29,15 @@ namespace Bloggy.Controllers
             {
                 post.PublishedAt = DateTime.Now;
             }
-            _db.Posts.Add(post);
-            _db.SaveChanges();
+            Db.Posts.Add(post);
+            Db.SaveChanges();
 
             return RedirectToAction("Index", "Blog");
         }
 
         public IActionResult Edit(int id)
         {
-            var post = _db.Posts.SingleOrDefault(p => p.Id == id);
+            var post = Db.Posts.SingleOrDefault(p => p.Id == id);
 
             return View(post);
         }
@@ -57,8 +56,8 @@ namespace Bloggy.Controllers
                 post.PublishedAt = DateTime.Now;
             }
             post.LastModified = DateTime.Now;
-            _db.Entry(post).State = EntityState.Modified;
-            _db.SaveChanges();
+            Db.Entry(post).State = EntityState.Modified;
+            Db.SaveChanges();
 
             return RedirectToAction("Details", "Blog", new { slug = post.Slug });
         }
