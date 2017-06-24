@@ -1,4 +1,5 @@
 ﻿using Bloggy.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -37,7 +38,7 @@ namespace Bloggy
         {
             if (Environment.IsDevelopment())
             {
-                services.AddDbContext<BloggingContext>(options => options.UseInMemoryDatabase());
+                services.AddDbContext<BloggingContext>(options => options.UseInMemoryDatabase("bloggy"));
             }
             else
             {
@@ -46,7 +47,11 @@ namespace Bloggy
 
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
 
-            services.AddAuthentication();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
 
             services.AddMvc();
 
@@ -73,11 +78,7 @@ namespace Bloggy
                 app.UseExceptionHandler("/error");
             }
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true
-            });
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 

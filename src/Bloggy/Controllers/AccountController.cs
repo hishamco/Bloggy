@@ -1,4 +1,5 @@
 ﻿using Bloggy.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +48,7 @@ namespace Bloggy.Controllers
                     var adminUser = new ClaimsPrincipal(
                         new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, _credential.User.Name) },
                         CookieAuthenticationDefaults.AuthenticationScheme));
-                    await ControllerContext.HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, adminUser);
+                    await ControllerContext.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, adminUser);
 
                     return RedirectToLocal(returnUrl);
                 }
@@ -64,7 +65,7 @@ namespace Bloggy.Controllers
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction(nameof(BlogController.Index), "Blog");
         }
 

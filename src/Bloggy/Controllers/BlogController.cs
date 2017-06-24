@@ -73,7 +73,7 @@ namespace Bloggy.Controllers
         public IActionResult Tags()
         {
             var tags = Db.Posts
-                .SelectMany(p => p.Tags.Split(','))
+                .SelectMany(p => p.Tags.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 .Distinct()
                 .OrderBy(t => t);
 
