@@ -49,7 +49,7 @@ namespace Bloggy
             foreach (var location in viewLocations)
             {
                 yield return location;
-                yield return location.Insert(7, $"Themes/{theme}/");
+                yield return location.Replace("/Pages/", $"/Pages/Themes/{theme}/");
             }
         }
     }

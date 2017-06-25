@@ -1,0 +1,22 @@
+﻿@page
+
+@model Bloggy.ArchiveModel
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<div id="archive">
+    @foreach (var group in Model.GroupedPostsByMonth)
+    {
+        <div class="row">
+            <h3>@group.Item1</h3>
+            <ul>
+                @foreach (var post in group.Item2)
+                {
+                    <li><a asp-page="Post" asp-route-slug="@post.Slug">@post.Title</a> @if (User.Identity.IsAuthenticated){<span class="actions" style="float:right">[ <a asp-page="/Account/Posts/Edit" asp-route-id="@post.Id">Edit</a> ]</span>}</li>
+                }
+            </ul>
+        </div>
+     }
+</div>

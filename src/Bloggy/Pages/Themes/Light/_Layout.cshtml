@@ -1,0 +1,72 @@
+﻿@using Bloggy
+@using Bloggy.Models
+@using Microsoft.Extensions.Options
+
+@inject IOptions<AppSettings> AppSettings
+
+@{ 
+    var activePage = ViewContext.RouteData.Values["page"].ToString();
+}
+
+@functions
+{
+    public Blog Blog
+    {
+        get
+        {
+            return AppSettings.Value.Blog;
+        }
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Blog.Name - @ViewBag.Title</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/styles/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" />
+        <link rel="stylesheet" type="text/css" href="~/styles/simplemde.min.css" />
+        <script src="~/scripts/simplemde.min.js"></script>
+    </environment>
+    <environment names="Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" 
+              asp-fallback-href="~/styles/bootstrap.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/styles/bloggy.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    </environment>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="@Url.Content($"~/{Blog.Image}")" class="img-circle" />
+            <h1>@Blog.Name</h1>
+            <nav>
+                <a asp-page="index" class="@(string.Equals(activePage, "index", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Home</a>
+                <a asp-page="archive" class="@(string.Equals(activePage, "archive", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Archive</a>
+                <a asp-page="about" class="@(string.Equals(activePage, "about", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">About</a>
+                <a asp-page="contact" class="@(string.Equals(activePage, "contact", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">Contact</a>
+            </nav>
+            <div>
+                <partial name="_LoginPartial" />
+            </div>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <footer>
+            <p>Copyright &copy; @DateTime.UtcNow.Year <a href="#">@Blog.Name</a></p>
+        </footer>
+    </div>
+    <script>
+        var simplemde = new SimpleMDE({
+            toolbar: ["bold", "italic", "|", "quote", "code", "link", "|", "unordered-list", "ordered-list", "|", "preview"],
+            status: false
+        });
+    </script>
+</body>
+</html>

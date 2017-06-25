@@ -1,0 +1,25 @@
+﻿@using Bloggy.Models
+
+@model Comment
+
+<form id="commentForm" asp-page="Post" asp-page-handler="addComment" asp-anti-forgery="false" method="post">
+    <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+    <div class="form-group">
+        <label asp-for="Author" class="control-label"></label>
+        <input asp-for="Author" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control">
+        <span>(will show your gravatar icon)</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Website" class="control-label"></label>
+        <input asp-for="Website" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="control-label"></label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+</form>

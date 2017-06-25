@@ -53,7 +53,14 @@ namespace Bloggy
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
-            services.AddMvc();
+            services.AddCookieAuthentication();
+
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AuthorizeFolder("/Account");
+                    options.AllowAnonymousToPage("/Account/Login");
+                });
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -87,7 +94,7 @@ namespace Bloggy
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),
-                    $@"Views/Themes/{appSettings.Value.Blog.Theme}")),
+                    $@"Pages/Themes/{appSettings.Value.Blog.Theme}")),
                 RequestPath = string.Empty
             });
 

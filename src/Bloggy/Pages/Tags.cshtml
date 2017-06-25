@@ -1,0 +1,29 @@
+﻿@page
+
+@model Bloggy.TagsModel
+
+@{
+    ViewBag.Title = "Tags";
+}
+
+<div id="tags">
+    <div class="row">
+        @foreach (var tag in Model.Tags)
+        {
+            <a href="#@tag"><span class="label">@tag</span></a>
+        }
+    </div>
+
+    @foreach (var tag in Model.Tags)
+    {
+        <div class="row">
+            <h3 id="@tag">@tag</h3>
+            <ul>
+                @foreach (var post in Model.GetPosts(tag))
+                {
+                    <li><a asp-page="Post" asp-route-slug="@post.Slug">@post.Title</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>

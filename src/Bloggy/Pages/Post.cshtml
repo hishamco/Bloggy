@@ -1,0 +1,54 @@
+﻿@page "{slug}"
+
+@model Bloggy.PostModel
+
+@{
+    ViewBag.Title = Model.Post.Slug;
+}
+
+<article class="row">
+    <h2><a href="#">@Model.Post.Title</a></h2>
+    <time>@Model.Post.PublishedAt.ToString("MMMM dd, yyyy")</time>
+    <span id="tags"><a href="#">#@Model.Post.Tags</a></span>
+    <markdown>@Model.Post.Content</markdown>
+</article>
+
+    <div id="comments">
+        <h3>@Model.Post.Comments.Count() Comments</h3>
+        @foreach (var comment in Model.Post.Comments)
+        {
+            <form method="post">
+                <div class="comment">
+                    <gravatar email="@comment.Email" />
+                    <div>
+                        <h4><a href="@(comment.Website ?? "#")">@comment.Author</a></h4>
+                        <time>@comment.PublishedAt.ToString("MMMM dd, yyyy")</time>
+                        <p markdown>@Html.Raw(comment.Content)</p>
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="actions">
+                            [ <a href="#">Edit</a> | <button type="submit" asp-page-handler="deleteComment" asp-route-id="@comment.Id">Delete</button> ]
+                        </div>
+                    }
+                </div>
+            </form>
+         }
+</div>
+
+@if (Model.Blog.AllowComments && (DateTime.Now - Model.Post.PublishedAt).Days <= Model.Blog.DaysToComment)
+{
+    if (Model.ShowErrorMessage)
+    {
+        <alert type="Error">@Model.ErrorMessage</alert>
+    }
+
+    if (Model.ShowSuccessMessage)
+    {
+        <alert type="Success">@Model.SuccessMessage</alert>
+    }
+    else
+    {
+        <partial name="_CommentFormPartial" model="Model.Comment" />
+    }
+}

@@ -1,0 +1,45 @@
+﻿@page "{id:int}"
+
+@model Bloggy.EditPostModel
+
+@{
+    ViewBag.Title = "Edit Post";
+}
+
+<div id="login" class="row">
+    <h2>@ViewBag.Title</h2>
+    <div class="col-md-12">
+        <section>
+            <form asp-anti-forgery="true" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input asp-for="@Model.Post.Id" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Post.Title" class="control-label"></label>
+                    <input asp-for="Post.Title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Post.Slug" class="control-label"></label>
+                    <input asp-for="Post.Slug" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Post.Excerpt" class="control-label"></label>
+                    <input asp-for="Post.Excerpt" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Post.Tags" class="control-label"></label>
+                    <input asp-for="Post.Tags" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Post.Content" class="control-label"></label>
+                    <textarea asp-for="Post.Content" class="form-control"></textarea>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Post.IsPublished" type="checkbox"> <strong>Is Published</strong>
+                    </label>
+                </div>
+                <button type="submit" class="btn">Save</button>
+            </form>
+        </section>
+    </div>
+</div>
