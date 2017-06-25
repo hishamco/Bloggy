@@ -217,8 +217,9 @@ article {
         line-height: 24px;
     }
 
-#commentForm, .alert-success {
+#commentForm, .alert-success, .alert-error {
     margin-left: -15px;
+    margin-top: 20px;
 }
 
     #commentForm ul {
