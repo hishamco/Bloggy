@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Bloggy
+namespace Bloggy.Pages
 {
     public class IndexModel : PageModel
     {

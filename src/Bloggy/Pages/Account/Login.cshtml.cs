@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Bloggy
+namespace Bloggy.Pages.Account
 {
     public class LoginModel : PageModel
     {

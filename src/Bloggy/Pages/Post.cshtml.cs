@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Bloggy
+namespace Bloggy.Pages
 {
     public class PostModel : PageModel
     {
