@@ -230,6 +230,18 @@ article {
     margin-top: 20px;
 }
 
+    #commentForm label {
+        color: #fff;
+    }
+
+    #commentForm span {
+        color: #999;
+    }
+
+    #commentForm a {
+        color: #1ba0ff !important;
+    }
+
     #commentForm ul {
         margin-left: -25px;
     }
