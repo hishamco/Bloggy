@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 
 namespace Bloggy
 {
@@ -44,6 +46,12 @@ namespace Bloggy
             {
                 services.AddDbContext<BloggingContext>(options => options.UseSqlite(Configuration["Data:DefaultConnection:ConnectionString"]));
             }
+
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Fastest);
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<GzipCompressionProvider>();
+            });
 
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
 
@@ -90,6 +98,8 @@ namespace Bloggy
             }
 
             app.UseAuthentication();
+
+            app.UseResponseCompression();
 
             app.UseStaticFiles();
 
