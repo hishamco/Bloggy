@@ -53,7 +53,11 @@ namespace Bloggy
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
-            services.AddCookieAuthentication();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookieAuthentication();
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
