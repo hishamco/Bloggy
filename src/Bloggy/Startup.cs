@@ -65,13 +65,13 @@ namespace Bloggy
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookieAuthentication();
+            }).AddCookie();
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.AuthorizeFolder("/Account");
-                    options.AllowAnonymousToPage("/Account/Login");
+                    options.Conventions.AuthorizeFolder("/Account");
+                    options.Conventions.AllowAnonymousToPage("/Account/Login");
                 });
 
             services.Configure<RazorViewEngineOptions>(options =>
